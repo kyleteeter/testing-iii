@@ -7,12 +7,26 @@ afterEach(cleanup);
 
 describe('The Display Component', () => {
     it('renders the ', () => {
-        render(<Display />);
+        render(<Display closed={false} locked={false} />);
     });
 
-    it('render display Lock', () => {
-        const component = render(<Display />)
-        const lock = component.toHaveClass('lockedClass');
-        expect(lock).toHaveTextContent(/Locked/i)
+    it('display open if the gate is open', () => {
+        const { getByText } = render(<Display closed={false} locked={false} />);
+        getByText(/open/i);
+    })
+
+    it('display closed if the gate is closed', () => {
+        const { getByText } = render(<Display closed={true} locked={true} />);
+        getByText(/closed/i);
+    })
+
+    it('display locked if the gate is closed', () => {
+        const { getByText } = render(<Display closed={true} locked={true} />);
+        getByText(/locked/i);
+    })
+
+    it('display unlocked if the gate is open', () => {
+        const { getByText } = render(<Display closed={false} locked={false} />);
+        getByText(/unlocked/i);
     })
 });
