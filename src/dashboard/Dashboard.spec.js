@@ -9,5 +9,4 @@ describe('The Display Component', () => {
     it('renders display', () => {
         render(<Dashboard />);
     });
-
 });
